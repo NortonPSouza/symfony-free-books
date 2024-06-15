@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Validate;
+namespace App\Service\User\Validate;
 
 use App\Helper\NotificationError;
 use Respect\Validation\Validator as v;
