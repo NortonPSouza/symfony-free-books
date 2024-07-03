@@ -4,23 +4,21 @@ namespace App\Service\User;
 
 use App\Helper\NotificationError;
 use App\Service\User\Dto\UserCreateDto;
+use App\Service\User\storage\UserStorage;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserService
 {
     public function __construct(
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        private readonly UserStorage $userStorage
     )
     {
     }
 
-    public function create(NotificationError $notificationError, array $data): bool
+    public function create(NotificationError $notificationError, UserCreateDto $userCreateDto): bool
     {
-        $userDto = UserCreateDto::fromArray($notificationError, $data);
-        if(!$userDto){
-            return false;
-        }
-        return false;
+        return $this->userStorage->create($notificationError, $userCreateDto);
     }
 
 }

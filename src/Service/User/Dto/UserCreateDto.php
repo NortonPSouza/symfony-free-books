@@ -4,7 +4,6 @@ namespace App\Service\User\Dto;
 
 use App\Helper\ArraySerialization;
 use App\Helper\NotificationError;
-use App\Service\User\Validate\UserForm;
 
 final class UserCreateDto implements ArraySerialization
 {
@@ -16,12 +15,8 @@ final class UserCreateDto implements ArraySerialization
     {
     }
 
-    public static function fromArray(NotificationError $notificationError, array $data): ?UserCreateDto
+    public static function fromArray(array $data): ?UserCreateDto
     {
-        $userIsValid = UserForm::validateCreate($notificationError, $data);
-        if(!$userIsValid){
-            return null;
-        }
         return new UserCreateDto(
             $data["name"],
             $data["email"],
